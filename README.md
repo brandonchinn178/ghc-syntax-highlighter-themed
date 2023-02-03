@@ -23,7 +23,7 @@ import GHC.SyntaxHighlighter.Themed.HighlightJS (renderHaskell)
 main :: IO ()
 main = do
   -- read this file!
-  code <- Text.replace "<link" "&lt;link" <$> Text.readFile "Main.hs"
+  code <- Text.readFile "Main.hs"
 
   Text.writeFile "index.html" . Text.unlines $
     [ "<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css'>"

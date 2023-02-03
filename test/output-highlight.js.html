@@ -11,14 +11,14 @@
 
 <span class='hljs-comment'>-- | This is a comment</span>
 <span class='hljs-keyword'>class</span> <span class='hljs-type'>MyClass</span> a <span class='hljs-keyword'>where</span>
-  foo :: a -> a
+  foo :: a -&gt; a
 
 <span class='hljs-keyword'>data</span> <span class='hljs-type'>MyType</span> a = <span class='hljs-type'>MyCon</span> {conField1 :: <span class='hljs-type'>Int</span>, conField2 :: a}
 
-func1 :: <span class='hljs-keyword'>forall</span> a. <span class='hljs-type'>Show</span> a => a -> [a] -> (a, [a])
+func1 :: <span class='hljs-keyword'>forall</span> a. <span class='hljs-type'>Show</span> a =&gt; a -&gt; [a] -&gt; (a, [a])
 func1 a [] = (a, [])
 func1 a (_ : end) = (a, end)
 
-(*+*) :: <span class='hljs-type'>Int</span> -> <span class='hljs-type'>Int</span> -> <span class='hljs-type'>Bool</span>
+(*+*) :: <span class='hljs-type'>Int</span> -&gt; <span class='hljs-type'>Int</span> -&gt; <span class='hljs-type'>Bool</span>
 a *+* b = (a * <span class='hljs-number'>2</span>) == b
 </code></pre>

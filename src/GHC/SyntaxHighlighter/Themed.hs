@@ -34,12 +34,18 @@ renderTokensWith config = wrap . foldMap (renderTokenWith config)
         ]
 
 renderTokenWith :: ThemeProviderConfig -> (Token, Text) -> Text
-renderTokenWith ThemeProviderConfig{getTokenClass} (token, s) =
+renderTokenWith ThemeProviderConfig{getTokenClass} (token, rawText) =
   case getTokenClass token of
-    Nothing -> s
+    Nothing -> escapedText
     Just cls ->
       Text.concat
         [ "<span class='" <> cls <> "'>"
-        , s
+        , escapedText
         , "</span>"
         ]
+  where
+    escapedText =
+      Text.replace "<" "&lt;"
+        . Text.replace ">" "&gt;"
+        . Text.replace "&" "&amp;"
+        $ rawText
