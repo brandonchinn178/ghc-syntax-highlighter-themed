@@ -1,0 +1,43 @@
+name: ghc-syntax-highlighter-themed
+version: 0.1.0
+category: Text
+synopsis: Render HTML from ghc-syntax-highlighter
+description: Render HTML from ghc-syntax-highlighter. See README.md for more details.
+license: BSD3
+license-file: LICENSE.md
+author: Brandon Chinn <brandonchinn178@gmail.com>
+maintainer: Brandon Chinn <brandonchinn178@gmail.com>
+
+extra-source-files:
+  - README.md
+  - CHANGELOG.md
+  - test/input.hs
+  - test/output-*.html
+
+github: brandonchinn178/ghc-syntax-highlighter-themed
+
+ghc-options:
+  - -Wall
+  - -Wcompat
+  - -Wincomplete-record-updates
+  - -Wincomplete-uni-patterns
+  - -Wnoncanonical-monad-instances
+  - -Wno-unused-packages
+
+library:
+  source-dirs: src
+  dependencies:
+    - base < 5
+    - ghc-syntax-highlighter
+    - text
+
+tests:
+  ghc-syntax-highlighter-themed-tests:
+    main: test/Main.hs
+    dependencies:
+      - base
+      - bytestring
+      - ghc-syntax-highlighter-themed
+      - tasty
+      - tasty-golden
+      - text

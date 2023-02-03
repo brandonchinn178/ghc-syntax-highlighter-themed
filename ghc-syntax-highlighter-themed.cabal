@@ -1,0 +1,59 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.35.1.
+--
+-- see: https://github.com/sol/hpack
+
+name:           ghc-syntax-highlighter-themed
+version:        0.1.0
+synopsis:       Render HTML from ghc-syntax-highlighter
+description:    Render HTML from ghc-syntax-highlighter. See README.md for more details.
+category:       Text
+homepage:       https://github.com/brandonchinn178/ghc-syntax-highlighter-themed#readme
+bug-reports:    https://github.com/brandonchinn178/ghc-syntax-highlighter-themed/issues
+author:         Brandon Chinn <brandonchinn178@gmail.com>
+maintainer:     Brandon Chinn <brandonchinn178@gmail.com>
+license:        BSD3
+license-file:   LICENSE.md
+build-type:     Simple
+extra-source-files:
+    README.md
+    CHANGELOG.md
+    test/input.hs
+    test/output-highlight.js.html
+    test/output-Prism.html
+
+source-repository head
+  type: git
+  location: https://github.com/brandonchinn178/ghc-syntax-highlighter-themed
+
+library
+  exposed-modules:
+      GHC.SyntaxHighlighter.Themed
+      GHC.SyntaxHighlighter.Themed.HighlightJS
+      GHC.SyntaxHighlighter.Themed.Prism
+  other-modules:
+      Paths_ghc_syntax_highlighter_themed
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wnoncanonical-monad-instances -Wno-unused-packages
+  build-depends:
+      base <5
+    , ghc-syntax-highlighter
+    , text
+  default-language: Haskell2010
+
+test-suite ghc-syntax-highlighter-themed-tests
+  type: exitcode-stdio-1.0
+  main-is: test/Main.hs
+  other-modules:
+      Paths_ghc_syntax_highlighter_themed
+  ghc-options: -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wnoncanonical-monad-instances -Wno-unused-packages
+  build-depends:
+      base
+    , bytestring
+    , ghc-syntax-highlighter-themed
+    , tasty
+    , tasty-golden
+    , text
+  default-language: Haskell2010
