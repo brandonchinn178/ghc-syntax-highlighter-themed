@@ -9,16 +9,21 @@
   (*+*),
 ) <span class='hljs-keyword'>where</span>
 
+<span class='hljs-keyword'>import</span> <span class='hljs-type'>Control.Monad</span> (when)
+
 <span class='hljs-comment'>-- | This is a comment</span>
 <span class='hljs-keyword'>class</span> <span class='hljs-type'>MyClass</span> a <span class='hljs-keyword'>where</span>
   foo :: a -&gt; a
 
 <span class='hljs-keyword'>data</span> <span class='hljs-type'>MyType</span> a = <span class='hljs-type'>MyCon</span> {conField1 :: <span class='hljs-type'>Int</span>, conField2 :: a}
 
-func1 :: <span class='hljs-keyword'>forall</span> a. <span class='hljs-type'>Show</span> a =&gt; a -&gt; [a] -&gt; (a, [a])
-func1 a [] = (a, [])
-func1 a (_ : end) = (a, end)
+func1 :: <span class='hljs-keyword'>forall</span> a. (<span class='hljs-type'>MonadIO</span> m, <span class='hljs-type'>Show</span> a) =&gt; a -&gt; [a] -&gt; m (a, [a])
+func1 a [] = pure (a, [])
+func1 a (_ : end) = <span class='hljs-keyword'>do</span>
+  debug &lt;- getEnv <span class='hljs-string'>"DEBUG"</span>
+  when debug $ print end
+  pure (a, end)
 
 (*+*) :: <span class='hljs-type'>Int</span> -&gt; <span class='hljs-type'>Int</span> -&gt; <span class='hljs-type'>Bool</span>
-a *+* b = (a * <span class='hljs-number'>2</span>) == b
+a *+* b = (a * <span class='hljs-number'>2</span>) == b &amp;&amp; odd a
 </code></pre>

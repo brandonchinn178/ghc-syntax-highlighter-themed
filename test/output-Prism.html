@@ -9,16 +9,21 @@
   <span class='token punctuation'>(</span><span class='token operator'>*+*</span><span class='token punctuation'>)</span><span class='token punctuation'>,</span>
 <span class='token punctuation'>)</span> <span class='token keyword'>where</span>
 
+<span class='token keyword'>import</span> <span class='token class-name'>Control.Monad</span> <span class='token punctuation'>(</span>when<span class='token punctuation'>)</span>
+
 <span class='token comment'>-- | This is a comment</span>
 <span class='token keyword'>class</span> <span class='token class-name'>MyClass</span> a <span class='token keyword'>where</span>
   foo <span class='token punctuation'>::</span> a <span class='token punctuation'>-&gt;</span> a
 
 <span class='token keyword'>data</span> <span class='token class-name'>MyType</span> a <span class='token punctuation'>=</span> <span class='token class-name'>MyCon</span> <span class='token punctuation'>{</span>conField1 <span class='token punctuation'>::</span> <span class='token class-name'>Int</span><span class='token punctuation'>,</span> conField2 <span class='token punctuation'>::</span> a<span class='token punctuation'>}</span>
 
-func1 <span class='token punctuation'>::</span> <span class='token keyword'>forall</span> a<span class='token operator'>.</span> <span class='token class-name'>Show</span> a <span class='token punctuation'>=&gt;</span> a <span class='token punctuation'>-&gt;</span> <span class='token punctuation'>[</span>a<span class='token punctuation'>]</span> <span class='token punctuation'>-&gt;</span> <span class='token punctuation'>(</span>a<span class='token punctuation'>,</span> <span class='token punctuation'>[</span>a<span class='token punctuation'>]</span><span class='token punctuation'>)</span>
-func1 a <span class='token punctuation'>[</span><span class='token punctuation'>]</span> <span class='token punctuation'>=</span> <span class='token punctuation'>(</span>a<span class='token punctuation'>,</span> <span class='token punctuation'>[</span><span class='token punctuation'>]</span><span class='token punctuation'>)</span>
-func1 a <span class='token punctuation'>(</span><span class='token punctuation'>_</span> <span class='token punctuation'>:</span> end<span class='token punctuation'>)</span> <span class='token punctuation'>=</span> <span class='token punctuation'>(</span>a<span class='token punctuation'>,</span> end<span class='token punctuation'>)</span>
+func1 <span class='token punctuation'>::</span> <span class='token keyword'>forall</span> a<span class='token operator'>.</span> <span class='token punctuation'>(</span><span class='token class-name'>MonadIO</span> m<span class='token punctuation'>,</span> <span class='token class-name'>Show</span> a<span class='token punctuation'>)</span> <span class='token punctuation'>=&gt;</span> a <span class='token punctuation'>-&gt;</span> <span class='token punctuation'>[</span>a<span class='token punctuation'>]</span> <span class='token punctuation'>-&gt;</span> m <span class='token punctuation'>(</span>a<span class='token punctuation'>,</span> <span class='token punctuation'>[</span>a<span class='token punctuation'>]</span><span class='token punctuation'>)</span>
+func1 a <span class='token punctuation'>[</span><span class='token punctuation'>]</span> <span class='token punctuation'>=</span> pure <span class='token punctuation'>(</span>a<span class='token punctuation'>,</span> <span class='token punctuation'>[</span><span class='token punctuation'>]</span><span class='token punctuation'>)</span>
+func1 a <span class='token punctuation'>(</span><span class='token punctuation'>_</span> <span class='token punctuation'>:</span> end<span class='token punctuation'>)</span> <span class='token punctuation'>=</span> <span class='token keyword'>do</span>
+  debug <span class='token punctuation'>&lt;-</span> getEnv <span class='token string'>"DEBUG"</span>
+  when debug <span class='token operator'>$</span> print end
+  pure <span class='token punctuation'>(</span>a<span class='token punctuation'>,</span> end<span class='token punctuation'>)</span>
 
 <span class='token punctuation'>(</span><span class='token operator'>*+*</span><span class='token punctuation'>)</span> <span class='token punctuation'>::</span> <span class='token class-name'>Int</span> <span class='token punctuation'>-&gt;</span> <span class='token class-name'>Int</span> <span class='token punctuation'>-&gt;</span> <span class='token class-name'>Bool</span>
-a <span class='token operator'>*+*</span> b <span class='token punctuation'>=</span> <span class='token punctuation'>(</span>a <span class='token punctuation'>*</span> <span class='token number'>2</span><span class='token punctuation'>)</span> <span class='token operator'>==</span> b
+a <span class='token operator'>*+*</span> b <span class='token punctuation'>=</span> <span class='token punctuation'>(</span>a <span class='token punctuation'>*</span> <span class='token number'>2</span><span class='token punctuation'>)</span> <span class='token operator'>==</span> b <span class='token operator'>&amp;&amp;</span> odd a
 </code></pre>
