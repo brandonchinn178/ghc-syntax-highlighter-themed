@@ -1,24 +1,24 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
-<pre><code class="language-haskell hljs"><span class="hljs-meta">{-# LANGUAGE OverloadedStrings #-}</span>
-<span class="hljs-meta">{-# OPTIONS_GHC -Wno-orphans #-}</span>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css'>
+<pre><code class='language-haskell hljs'><span class='hljs-meta'>{-# LANGUAGE OverloadedStrings #-}</span>
+<span class='hljs-meta'>{-# OPTIONS_GHC -Wno-orphans #-}</span>
 
-<span class="hljs-keyword">module</span> <span class="hljs-type">MyModule</span> (
-  <span class="hljs-type">MyClass</span> (..),
-  <span class="hljs-type">MyType</span> (<span class="hljs-type">MyCon</span>, conField1, conField2),
+<span class='hljs-keyword'>module</span> <span class='hljs-type'>MyModule</span> (
+  <span class='hljs-type'>MyClass</span> (..),
+  <span class='hljs-type'>MyType</span> (<span class='hljs-type'>MyCon</span>, conField1, conField2),
   func1,
   (*+*),
-) <span class="hljs-keyword">where</span>
+) <span class='hljs-keyword'>where</span>
 
-<span class="hljs-comment">-- | This is a comment</span>
-<span class="hljs-keyword">class</span> <span class="hljs-type">MyClass</span> a <span class="hljs-keyword">where</span>
+<span class='hljs-comment'>-- | This is a comment</span>
+<span class='hljs-keyword'>class</span> <span class='hljs-type'>MyClass</span> a <span class='hljs-keyword'>where</span>
   foo :: a -> a
 
-<span class="hljs-keyword">data</span> <span class="hljs-type">MyType</span> a = <span class="hljs-type">MyCon</span> {conField1 :: <span class="hljs-type">Int</span>, conField2 :: a}
+<span class='hljs-keyword'>data</span> <span class='hljs-type'>MyType</span> a = <span class='hljs-type'>MyCon</span> {conField1 :: <span class='hljs-type'>Int</span>, conField2 :: a}
 
-func1 :: <span class="hljs-keyword">forall</span> a. <span class="hljs-type">Show</span> a => a -> [a] -> (a, [a])
+func1 :: <span class='hljs-keyword'>forall</span> a. <span class='hljs-type'>Show</span> a => a -> [a] -> (a, [a])
 func1 a [] = (a, [])
 func1 a (_ : end) = (a, end)
 
-(*+*) :: <span class="hljs-type">Int</span> -> <span class="hljs-type">Int</span> -> <span class="hljs-type">Bool</span>
-a *+* b = (a * <span class="hljs-number">2</span>) == b
+(*+*) :: <span class='hljs-type'>Int</span> -> <span class='hljs-type'>Int</span> -> <span class='hljs-type'>Bool</span>
+a *+* b = (a * <span class='hljs-number'>2</span>) == b
 </code></pre>

@@ -21,7 +21,7 @@ main =
         Nothing -> error "input.hs was invalid"
         Just output ->
           pure . ByteString.Lazy.fromStrict . Text.encodeUtf8 . Text.unlines $
-            [ "<link rel=\"stylesheet\" href=\"" <> link <> "\">"
+            [ "<link rel='stylesheet' href='" <> link <> "'>"
             , output
             ]
     | ThemeProvider{..} <- allThemes

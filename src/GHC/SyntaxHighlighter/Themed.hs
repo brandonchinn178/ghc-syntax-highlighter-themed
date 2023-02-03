@@ -27,7 +27,7 @@ renderTokensWith config = wrap . foldMap (renderTokenWith config)
     wrap s =
       Text.concat
         [ "<pre>"
-        , "<code class=\"language-haskell " <> containerClass config <> "\">"
+        , "<code class='language-haskell " <> containerClass config <> "'>"
         , s
         , "</code>"
         , "</pre>"
@@ -39,7 +39,7 @@ renderTokenWith ThemeProviderConfig{getTokenClass} (token, s) =
     Nothing -> s
     Just cls ->
       Text.concat
-        [ "<span class=\"" <> cls <> "\">"
+        [ "<span class='" <> cls <> "'>"
         , s
         , "</span>"
         ]
