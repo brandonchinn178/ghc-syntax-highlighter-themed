@@ -14,7 +14,7 @@ import GHC.SyntaxHighlighter (Token (..), tokenizeHaskell)
 
 data ThemeProviderConfig = ThemeProviderConfig
   { containerClass :: Text
-  , getTokenClass :: Token -> Text
+  , getTokenClass :: Token -> Maybe Text
   }
 
 renderHaskellWith :: ThemeProviderConfig -> Text -> Maybe Text
@@ -35,8 +35,11 @@ renderTokensWith config = wrap . foldMap (renderTokenWith config)
 
 renderTokenWith :: ThemeProviderConfig -> (Token, Text) -> Text
 renderTokenWith ThemeProviderConfig{getTokenClass} (token, s) =
-  Text.concat
-    [ "<span class=\"" <> getTokenClass token <> "\">"
-    , s
-    , "</span>"
-    ]
+  case getTokenClass token of
+    Nothing -> s
+    Just cls ->
+      Text.concat
+        [ "<span class=\"" <> cls <> "\">"
+        , s
+        , "</span>"
+        ]

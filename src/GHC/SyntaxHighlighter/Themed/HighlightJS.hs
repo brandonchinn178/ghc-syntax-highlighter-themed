@@ -34,17 +34,17 @@ config =
   ThemeProviderConfig
     { containerClass = "hljs"
     , getTokenClass = \case
-        KeywordTok -> "hljs-keyword"
-        PragmaTok -> "hljs-meta"
-        SymbolTok -> ""
-        VariableTok -> ""
-        ConstructorTok -> "hljs-type"
-        OperatorTok -> ""
-        CharTok -> "hljs-string"
-        StringTok -> "hljs-string"
-        IntegerTok -> "hljs-number"
-        RationalTok -> "hljs-number"
-        CommentTok -> "hljs-comment"
-        SpaceTok -> ""
-        OtherTok -> ""
+        KeywordTok -> Just "hljs-keyword"
+        PragmaTok -> Just "hljs-meta"
+        SymbolTok -> Nothing
+        VariableTok -> Nothing
+        ConstructorTok -> Just "hljs-type"
+        OperatorTok -> Nothing
+        CharTok -> Just "hljs-string"
+        StringTok -> Just "hljs-string"
+        IntegerTok -> Just "hljs-number"
+        RationalTok -> Just "hljs-number"
+        CommentTok -> Just "hljs-comment"
+        SpaceTok -> Nothing
+        OtherTok -> Nothing
     }

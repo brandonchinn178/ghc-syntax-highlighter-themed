@@ -34,17 +34,17 @@ config =
   ThemeProviderConfig
     { containerClass = ""
     , getTokenClass = \case
-        KeywordTok -> "token keyword"
-        PragmaTok -> "token comment"
-        SymbolTok -> "token punctuation"
-        VariableTok -> ""
-        ConstructorTok -> "token class-name"
-        OperatorTok -> "token operator"
-        CharTok -> "token char"
-        StringTok -> "token string"
-        IntegerTok -> "token number"
-        RationalTok -> "token number"
-        CommentTok -> "token comment"
-        SpaceTok -> ""
-        OtherTok -> ""
+        KeywordTok -> Just "token keyword"
+        PragmaTok -> Just "token comment"
+        SymbolTok -> Just "token punctuation"
+        VariableTok -> Nothing
+        ConstructorTok -> Just "token class-name"
+        OperatorTok -> Just "token operator"
+        CharTok -> Just "token char"
+        StringTok -> Just "token string"
+        IntegerTok -> Just "token number"
+        RationalTok -> Just "token number"
+        CommentTok -> Just "token comment"
+        SpaceTok -> Nothing
+        OtherTok -> Nothing
     }
